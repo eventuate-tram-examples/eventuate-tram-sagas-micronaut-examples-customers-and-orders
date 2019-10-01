@@ -8,7 +8,7 @@ The application consists of two services:
 * `Order Service` - creates orders
 * `Customer Service` - manages customers
 
-Both services are implemented using [Micronaut](https://micronaut.io), JPA and the https://github.com/eventuate-tram/eventuate-tram-sagas[Eventuate Tram Saga framework]
+Both services are implemented using https://micronaut.io[Micronaut], JPA and the https://github.com/eventuate-tram/eventuate-tram-sagas[Eventuate Tram Saga framework]
 
 The `Order Service` uses a saga to enforce the customer's credit limit when creating orders.
 
