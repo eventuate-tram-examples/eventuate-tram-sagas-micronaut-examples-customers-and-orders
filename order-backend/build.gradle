@@ -1,0 +1,47 @@
+plugins {
+    id "io.spring.dependency-management"
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://jcenter.bintray.com" }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.micronaut:micronaut-bom:1.2.0'
+    }
+}
+
+dependencies {
+    compile project(":common")
+    compile project(":customer-api")
+
+    compile "io.eventuate.tram.sagas:eventuate-jpa-sagas-framework:$eventuateTramSagasVersion"
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-simple-dsl:$eventuateTramSagasVersion"
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-participant-micronaut:$eventuateTramSagasVersion"
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-orchestration-micronaut:$eventuateTramSagasVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-events-micronaut:$eventuateTramVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-producer-jdbc-micronaut:$eventuateTramVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-consumer-jdbc-micronaut:$eventuateTramVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-messaging-micronaut:$eventuateTramVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-consumer-kafka-micronaut:$eventuateTramVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-events-micronaut:$eventuateTramVersion"
+
+    compile 'mysql:mysql-connector-java:5.1.36'
+    compile ('org.postgresql:postgresql:9.4-1200-jdbc41') {
+        exclude group: "org.slf4j", module: "slf4j-simple"
+    }
+
+    compile "io.micronaut:micronaut-spring"
+    annotationProcessor "io.micronaut:micronaut-inject-java"
+    annotationProcessor "io.micronaut:micronaut-validation"
+    annotationProcessor "io.micronaut.configuration:micronaut-openapi"
+    compile "io.micronaut:micronaut-inject"
+    compile "io.micronaut:micronaut-validation"
+    compile "io.micronaut:micronaut-runtime"
+    compile  'org.springframework:spring-jdbc'
+    compile "io.micronaut.configuration:micronaut-hibernate-jpa"
+    annotationProcessor "javax.persistence:javax.persistence-api:2.2"
+    compile 'io.micronaut.configuration:micronaut-jdbc-hikari'
+}
