@@ -17,8 +17,14 @@ The `Order Service` uses a saga to enforce the customer's credit limit when crea
 http://microservices.io/patterns/data/saga.html[Sagas] are a mechanism for maintaining data consistency in a http://microservices.io/patterns/microservices.html[microservice architecture].
 A saga is a sequence of transactions, each of which is local to a service.
 
+To learn more about why you need sagas if you are using microservices:
+
+* the http://microservices.io/patterns/data/saga.html[Saga pattern]
+* Look at https://chrisrichardson.net/post/antipatterns/2019/07/09/developing-sagas-part-1.html[Articles and presentation on sagas]
+* read about sagas in my https://microservices.io/book[Microservice patterns book]
+
 There are two main ways to coordinate sagas: orchestration and choreography.
-Please see https://github.com/eventuate-tram/eventuate-tram-examples-customers-and-orders[example] to learn about choreography-based sagas.
+Please see https://github.com/eventuate-tram-examples/eventuate-tram-examples-micronaut-customers-and-orders[Choreograpy version of the Customers and Orders example] to learn about choreography-based sagas.
 This example uses orchestration-based sagas, where a saga (orchestration) object invokes the participants.
 
 A saga orchestrator is a persistent object that does one of two things:
@@ -26,11 +32,6 @@ A saga orchestrator is a persistent object that does one of two things:
 1. On startup, it sends a command message to a participant
 2. When it receives a reply, it updates its state and sends a command message to the next participant.
 
-To learn more about why you need sagas if you are using microservices:
-
-* the http://microservices.io/patterns/data/saga.html[Saga pattern]
-* my http://microservices.io/microservices/general/2018/03/22/microxchg-sagas.html[microXchg 2018 presentation]
-* read about sagas in my https://www.manning.com/books/microservice-patterns[Microservice patterns book]
 
 == The Create Order Saga
 
@@ -157,5 +158,5 @@ Content-Type: application/json;charset=UTF-8
 Don't hesitate to create an issue or see
 
 * https://groups.google.com/d/forum/eventuate-users[Mailing list]
-* https://eventuate-users.slack.com[Slack]. https://eventuateusersslack.herokuapp.com/[Get invite]
+* https://join.slack.com/t/eventuate-users/shared_invite/enQtNTM4NjE0OTMzMDQ3LTc3ZjYzYjYxOGViNTdjMThkZmVmNWQzZWMwZmQyYzhjNjQ4OTE4YzJiYTE2NDdlOTljMDFlMDlkYTI2OWU1NTk[Slack]
 * http://eventuate.io/contact.html[Contact us].
