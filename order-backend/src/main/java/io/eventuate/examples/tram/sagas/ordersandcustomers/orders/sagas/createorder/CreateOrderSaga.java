@@ -34,7 +34,6 @@ public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
     return this.sagaDefinition;
   }
 
-  @Transactional
   private void create(CreateOrderSagaData data) {
     ResultWithEvents<Order> oe = Order.createOrder(data.getOrderDetails());
     Order order = oe.result;
@@ -51,12 +50,10 @@ public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
             .build();
   }
 
-  @Transactional
   private void approve(CreateOrderSagaData data) {
     entityManager.find(Order.class, data.getOrderId()).noteCreditReserved();
   }
 
-  @Transactional
   public void reject(CreateOrderSagaData data) {
     entityManager.find(Order.class, data.getOrderId()).noteCreditReservationFailed();
   }
