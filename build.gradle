@@ -33,6 +33,12 @@ dockerCompose {
     environment.put "EVENTUATE_KAFKA_VERSION", eventuateMessagingKafkaImageVersion
     environment.put "EVENTUATE_CDC_VERSION", eventuateCdcImageVersion
 
+    mysqlOnly {
+        projectName = null
+        startedServices = [ 'mysql']
+        useComposeFiles = ["docker-compose-mysql.yml"]
+    }
+
     mysql {
         projectName = null
         useComposeFiles = ["docker-compose-mysql.yml"]
@@ -42,6 +48,12 @@ dockerCompose {
         projectName = null
         useComposeFiles = ["docker-compose-mysql.yml"]
         startedServices = ["cdcservice"]
+    }
+
+    postgresOnly {
+        projectName = null
+        startedServices = [ 'postgres']
+        useComposeFiles = ["docker-compose-postgres.yml"]
     }
 
     postgres {
@@ -55,3 +67,9 @@ dockerCompose {
         startedServices = ["cdcservice"]
     }
 }
+
+mysqlComposeUp.dependsOn(mysqlComposeBuild)
+mysqlComposeUp.dependsOn(mysqlOnlyComposeUp)
+
+postgresComposeUp.dependsOn(postgresComposeBuild)
+postgresComposeUp.dependsOn(postgresOnlyComposeUp)
