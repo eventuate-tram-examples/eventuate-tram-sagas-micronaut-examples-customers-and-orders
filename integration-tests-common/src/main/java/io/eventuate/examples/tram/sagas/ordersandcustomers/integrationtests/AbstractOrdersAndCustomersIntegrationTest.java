@@ -7,7 +7,7 @@ import io.eventuate.examples.tram.sagas.ordersandcustomers.customers.service.Cus
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.domain.Order;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.common.OrderDetails;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.service.OrderService;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -60,6 +60,6 @@ public abstract class AbstractOrdersAndCustomersIntegrationTest {
       TimeUnit.MILLISECONDS.sleep(400);
     }
 
-    Assert.assertEquals(expectedState, order.getState());
+    Assertions.assertEquals(expectedState, order.getState());
   }
 }
