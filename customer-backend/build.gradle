@@ -18,8 +18,7 @@ dependencies {
     compile project(":customer-api")
 
     compile "io.eventuate.common:eventuate-common-micronaut-spring-jdbc:$eventuateCommonVersion"
-    compile "io.eventuate.tram.sagas:eventuate-jpa-sagas-framework:$eventuateTramSagasVersion"
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-simple-dsl:$eventuateTramSagasVersion"
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-orchestration-simple-dsl:$eventuateTramSagasVersion"
     compile "io.eventuate.tram.sagas:eventuate-tram-sagas-micronaut-participant:$eventuateTramSagasVersion"
     compile "io.eventuate.tram.sagas:eventuate-tram-sagas-micronaut-orchestration:$eventuateTramSagasVersion"
     compile "io.eventuate.tram.core:eventuate-tram-micronaut-events:$eventuateTramVersion"
