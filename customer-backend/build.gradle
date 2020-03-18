@@ -17,16 +17,9 @@ dependencies {
     compile project(":common")
     compile project(":customer-api")
 
-    compile "io.eventuate.common:eventuate-common-micronaut-spring-jdbc:$eventuateCommonVersion"
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-orchestration-simple-dsl:$eventuateTramSagasVersion"
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-micronaut-orchestration-simple-dsl:$eventuateTramSagasVersion"
     compile "io.eventuate.tram.sagas:eventuate-tram-sagas-micronaut-participant:$eventuateTramSagasVersion"
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-micronaut-orchestration:$eventuateTramSagasVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-micronaut-events:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-micronaut-producer-jdbc:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-micronaut-consumer-jdbc:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-micronaut-messaging:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-micronaut-consumer-kafka:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-micronaut-events:$eventuateTramVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-micronaut-jdbc-kafka:$eventuateTramVersion"
 
     compile 'mysql:mysql-connector-java:5.1.36'
     compile ('org.postgresql:postgresql:9.4-1200-jdbc41') {
