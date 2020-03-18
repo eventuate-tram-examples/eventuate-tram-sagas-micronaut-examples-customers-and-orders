@@ -17,17 +17,8 @@ dependencies {
     compile project(":common")
     compile project(":customer-api")
 
-    compile "io.eventuate.common:eventuate-common-jdbc-micronaut-spring:$eventuateCommonVersion"
-    compile "io.eventuate.tram.sagas:eventuate-jpa-sagas-framework:$eventuateTramSagasVersion"
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-simple-dsl:$eventuateTramSagasVersion"
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-participant-micronaut:$eventuateTramSagasVersion"
-    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-orchestration-micronaut:$eventuateTramSagasVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-events-micronaut:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-producer-jdbc-micronaut:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-consumer-jdbc-micronaut:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-messaging-micronaut:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-consumer-kafka-micronaut:$eventuateTramVersion"
-    compile "io.eventuate.tram.core:eventuate-tram-events-micronaut:$eventuateTramVersion"
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-micronaut-orchestration-simple-dsl:$eventuateTramSagasVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-micronaut-jdbc-kafka:$eventuateTramVersion"
 
     compile 'mysql:mysql-connector-java:5.1.36'
     compile ('org.postgresql:postgresql:9.4-1200-jdbc41') {
