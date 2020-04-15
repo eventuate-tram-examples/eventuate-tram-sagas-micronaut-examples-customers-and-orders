@@ -52,7 +52,7 @@ services:
       - ZOOKEEPER_CONNECTION_TIMEOUT_MS=60000
 
   mysql:
-    image: eventuateio/eventuate-tram-sagas-mysql:0.13.0.RELEASE
+    image: eventuateio/eventuate-tram-sagas-mysql:$EVENTUATE_SAGA_VERSION
     ports:
       - 3306:3306
     environment:
