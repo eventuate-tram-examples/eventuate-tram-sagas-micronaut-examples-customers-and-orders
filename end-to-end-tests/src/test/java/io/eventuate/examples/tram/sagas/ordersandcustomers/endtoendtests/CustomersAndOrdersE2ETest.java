@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 @MicronautTest
 public class CustomersAndOrdersE2ETest{
 
-  @Value("${docker.host.ip}")
+  @Value("${DOCKER_HOST_IP:localhost}")
   private String hostName;
 
   private String baseUrlOrders(String path) {
