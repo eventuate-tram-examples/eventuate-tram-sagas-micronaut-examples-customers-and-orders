@@ -1,10 +1,9 @@
 datasources:
   default:
-    url: ${DB_URL}
-    driverClassName: ${DB_DRIVERCLASSNAME}
-    driver-class-name: ${DB_DRIVERCLASSNAME}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://${MYSQL:$DOCKER_HOST_IP:localhost}/eventuate
+    driverClassName: com.mysql.jdbc.Driver
+    username: mysqluser
+    password: mysqlpw
 jpa:
   default:
     packages-to-scan:
