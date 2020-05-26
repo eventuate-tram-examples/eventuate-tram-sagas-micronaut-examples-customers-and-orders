@@ -15,6 +15,7 @@ services:
       KAFKA_PORT: 29092
       ZOOKEEPER: zookeeper
       MICRONAUT_ENVIRONMENTS: postgres
+      JAVA_OPTS: -Xmx32m
 
 
   customerservice:
@@ -32,6 +33,7 @@ services:
       KAFKA_PORT: 29092
       ZOOKEEPER: zookeeper
       MICRONAUT_ENVIRONMENTS: postgres
+      JAVA_OPTS: -Xmx32m
 
   zookeeper:
     image: confluentinc/cp-zookeeper:5.2.4
@@ -39,6 +41,7 @@ services:
       - 2181:2181
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+      KAFKA_HEAP_OPTS: -Xmx64m
 
   kafka:
     image: "confluentinc/cp-enterprise-kafka:5.2.4"
@@ -54,6 +57,7 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: LC
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_HEAP_OPTS: -Xmx192m
 
 
   postgres:
@@ -87,3 +91,4 @@ services:
       EVENTUATELOCAL_CDC_POLLING_RETRY_INTERVAL_IN_MILLISECONDS: 500
       EVENTUATELOCAL_CDC_READER_NAME: PostgresPollingReader
       SPRING_PROFILES_ACTIVE: EventuatePolling
+      JAVA_OPTS: -Xmx64m
