@@ -17,20 +17,38 @@ dependencyManagement {
 }
 
 dependencies {
-    compile project(":order-backend")
-    compile project(":order-web-api")
+    compile project(":common")
+    compile project(":customer-service-api-messaging")
+    compile project(":order-service-api-messaging")
+    compile project(":order-service-api-web")
+
+    compile "io.eventuate.tram.sagas:eventuate-tram-sagas-micronaut-orchestration-simple-dsl:$eventuateTramSagasVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-micronaut-spring-jdbc-optimistic-locking:$eventuateTramVersion"
+    compile "io.eventuate.tram.core:eventuate-tram-micronaut-jdbc-kafka:$eventuateTramVersion"
 
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
+    annotationProcessor "javax.persistence:javax.persistence-api:2.2"
+    annotationProcessor "io.micronaut.configuration:micronaut-openapi"
+
+    compile "io.micronaut:micronaut-spring"
     compile "io.micronaut:micronaut-inject"
     compile "io.micronaut:micronaut-validation"
     compile "io.micronaut:micronaut-runtime"
+    compile  'org.springframework:spring-jdbc'
+    compile "io.micronaut.configuration:micronaut-hibernate-jpa"
+    compile 'io.micronaut.configuration:micronaut-jdbc-hikari'
     compile "io.micronaut:micronaut-http-server-netty"
     compile 'io.micronaut:micronaut-management'
     runtime "ch.qos.logback:logback-classic:1.2.3"
-    annotationProcessor "io.micronaut.configuration:micronaut-openapi"
+
     compile "io.swagger.core.v3:swagger-annotations"
     compile "io.eventuate.util:eventuate-util-swagger-ui:$eventuateUtilVersion"
+
+    compile 'mysql:mysql-connector-java:5.1.36'
+    compile ('org.postgresql:postgresql:9.4-1200-jdbc41') {
+        exclude group: "org.slf4j", module: "slf4j-simple"
+    }
 }
 
 mainClassName = "io.eventuate.examples.tram.sagas.ordersandcustomers.orders.OrdersServiceMain"

@@ -1,6 +1,6 @@
 version: '3'
 services:
-  orderservice:
+  order-service:
     build:
       context: ./order-service/
       args:
@@ -11,13 +11,13 @@ services:
       - mysql
       - kafka
       - zookeeper
-      - cdcservice
+      - cdc-service
     environment:
       MYSQL: mysql
       KAFKA: kafka
       KAFKA_PORT: 29092
 
-  customerservice:
+  customer-service:
     build:
       context: ./customer-service/
       args:
@@ -28,7 +28,7 @@ services:
       - mysql
       - kafka
       - zookeeper
-      - cdcservice
+      - cdc-service
     environment:
       MYSQL: mysql
       KAFKA: kafka
@@ -43,7 +43,7 @@ services:
       KAFKA_HEAP_OPTS: -Xmx64m
 
   kafka:
-    image: "confluentinc/cp-enterprise-kafka:5.2.4"
+    image: "confluentinc/cp-kafka:5.2.4"
     ports:
       - 9092:9092
       - 29092:29092
@@ -67,7 +67,7 @@ services:
       - MYSQL_USER=mysqluser
       - MYSQL_PASSWORD=mysqlpw
 
-  cdcservice:
+  cdc-service:
     image: eventuateio/eventuate-cdc-service:$EVENTUATE_CDC_VERSION
     ports:
       - "8099:8080"

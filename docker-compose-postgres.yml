@@ -11,7 +11,7 @@ services:
       - postgres
       - kafka
       - zookeeper
-      - cdcservice
+      - cdc-service
     environment:
       POSTGRES: postgres
       KAFKA: kafka
@@ -30,7 +30,7 @@ services:
       - postgres
       - kafka
       - zookeeper
-      - cdcservice
+      - cdc-service
     environment:
       POSTGRES: postgres
       KAFKA: kafka
@@ -46,7 +46,7 @@ services:
       KAFKA_HEAP_OPTS: -Xmx64m
 
   kafka:
-    image: "confluentinc/cp-enterprise-kafka:5.2.4"
+    image: "confluentinc/cp-kafka:5.2.4"
     ports:
       - 9092:9092
       - 29092:29092
@@ -70,7 +70,7 @@ services:
       POSTGRES_USER: eventuate
       POSTGRES_PASSWORD: eventuate
 
-  cdcservice:
+  cdc-service:
     image: eventuateio/eventuate-cdc-service:$EVENTUATE_CDC_VERSION
     ports:
       - "8099:8080"
