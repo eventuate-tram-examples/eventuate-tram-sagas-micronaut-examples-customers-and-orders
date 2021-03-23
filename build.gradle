@@ -29,10 +29,9 @@ subprojects {
 }
 
 dockerCompose {
-    environment.put "EVENTUATE_COMMON_VERSION", eventuateCommonImageVersion
-    environment.put "EVENTUATE_KAFKA_VERSION", eventuateMessagingKafkaImageVersion
     environment.put "EVENTUATE_CDC_VERSION", eventuateCdcImageVersion
     environment.put "EVENTUATE_SAGA_VERSION", eventuateTramSagasImageVersion
+    environment.put "EVENTUATE_JAVA_BASE_IMAGE_VERSION", eventuateExamplesBaseImageVersion
 
     mysqlOnly {
         projectName = null
@@ -48,7 +47,7 @@ dockerCompose {
     mysqlcdc {
         projectName = null
         useComposeFiles = ["docker-compose-mysql.yml"]
-        startedServices = ["cdcservice"]
+        startedServices = ["cdc-service"]
     }
 
     postgresOnly {
@@ -65,7 +64,7 @@ dockerCompose {
     postgrescdc {
         projectName = null
         useComposeFiles = ["docker-compose-postgres.yml"]
-        startedServices = ["cdcservice"]
+        startedServices = ["cdc-service"]
     }
 }
 

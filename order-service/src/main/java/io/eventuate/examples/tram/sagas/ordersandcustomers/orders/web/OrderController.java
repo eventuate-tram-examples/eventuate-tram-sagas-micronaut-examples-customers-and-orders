@@ -1,8 +1,8 @@
 package io.eventuate.examples.tram.sagas.ordersandcustomers.orders.web;
 
-import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.common.OrderDetails;
+import io.eventuate.examples.tram.sagas.ordersandcustomers.messaging.common.OrderDetails;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.domain.Order;
-import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.service.OrderService;
+import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.service.OrderSagaService;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.webapi.CreateOrderRequest;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.webapi.CreateOrderResponse;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.webapi.GetOrderResponse;
@@ -21,14 +21,14 @@ import java.util.Optional;
 public class OrderController {
 
   @Inject
-  private OrderService orderService;
+  private OrderSagaService orderSagaService;
 
   @PersistenceContext
   private EntityManager entityManager;
 
   @Post(value = "/orders")
   public CreateOrderResponse createOrder(CreateOrderRequest createOrderRequest) {
-    Order order = orderService.createOrder(new OrderDetails(createOrderRequest.getCustomerId(), createOrderRequest.getOrderTotal()));
+    Order order = orderSagaService.createOrder(new OrderDetails(createOrderRequest.getCustomerId(), createOrderRequest.getOrderTotal()));
     return new CreateOrderResponse(order.getId());
   }
 
