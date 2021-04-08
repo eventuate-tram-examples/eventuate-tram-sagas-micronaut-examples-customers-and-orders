@@ -4,7 +4,7 @@ import io.eventuate.examples.tram.sagas.ordersandcustomers.messaging.createorder
 import io.eventuate.examples.tram.sagas.ordersandcustomers.messaging.common.OrderDetails;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.domain.Order;
 import io.eventuate.tram.sagas.orchestration.SagaManager;
-import io.micronaut.spring.tx.annotation.Transactional;
+import io.micronaut.transaction.annotation.TransactionalAdvice;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -19,7 +19,7 @@ public class OrderSagaService {
   @PersistenceContext
   private EntityManager entityManager;
 
-  @Transactional
+  @TransactionalAdvice
   public Order createOrder(OrderDetails orderDetails) {
     CreateOrderSagaData data = new CreateOrderSagaData(orderDetails);
     createOrderSagaManager.create(data);

@@ -6,7 +6,7 @@ import io.eventuate.examples.tram.sagas.ordersandcustomers.customers.domain.Cust
 import io.eventuate.examples.tram.sagas.ordersandcustomers.customers.messaging.replies.CustomerCreditReservationFailed;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.customers.messaging.replies.CustomerCreditReserved;
 import io.eventuate.tram.messaging.common.Message;
-import io.micronaut.spring.tx.annotation.Transactional;
+import io.micronaut.transaction.annotation.TransactionalAdvice;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +20,7 @@ public class CustomerService {
   @PersistenceContext
   private EntityManager entityManager;
 
-  @Transactional
+  @TransactionalAdvice
   public Customer createCustomer(String name, Money creditLimit) {
     Customer customer  = new Customer(name, creditLimit);
     entityManager.persist(customer);
