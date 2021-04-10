@@ -6,6 +6,7 @@ import io.eventuate.examples.tram.sagas.ordersandcustomers.customers.webapi.Crea
 import io.eventuate.examples.tram.sagas.ordersandcustomers.customers.webapi.CreateCustomerResponse;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.transaction.annotation.TransactionalAdvice;
 
 import javax.inject.Inject;
 
@@ -16,6 +17,7 @@ public class CustomerController {
   private CustomerService customerService;
 
   @Post(value = "/customers")
+  @TransactionalAdvice
   public CreateCustomerResponse createCustomer(CreateCustomerRequest createCustomerRequest) {
     Customer customer = customerService.createCustomer(createCustomerRequest.getName(), createCustomerRequest.getCreditLimit());
     return new CreateCustomerResponse(customer.getId());
