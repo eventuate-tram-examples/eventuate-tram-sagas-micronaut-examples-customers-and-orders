@@ -24,7 +24,7 @@ dependencies {
     compile "io.eventuate.tram.sagas:eventuate-tram-sagas-micronaut-orchestration-simple-dsl"
     compile "io.eventuate.tram.sagas:eventuate-tram-sagas-micronaut-participant"
     compile "io.eventuate.tram.core:eventuate-tram-micronaut-jdbc-kafka"
-    compile "io.eventuate.tram.core:eventuate-tram-micronaut-spring-jdbc-optimistic-locking"
+    compile "io.eventuate.tram.core:eventuate-tram-micronaut-data-jdbc-optimistic-locking"
 
 
     annotationProcessor "io.micronaut:micronaut-inject-java"
