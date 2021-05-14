@@ -16,6 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 @MicronautTest
@@ -55,6 +58,22 @@ public class CustomersAndOrdersE2ETest{
             new CreateOrderRequest(createCustomerResponseResponse.getCustomerId(), new Money("123.40")), CreateOrderResponse.class);
 
     assertOrderState(createOrderResponse.getOrderId(), OrderState.REJECTED);
+  }
+
+  @Test
+  public void testSwaggerUiUrls() throws IOException {
+    testSwaggerUiUrl(8081, "swagger-ui/index.html");
+    testSwaggerUiUrl(8082, "swagger-ui/index.html");
+  }
+
+  private void testSwaggerUiUrl(int port, String relativeUrl) throws IOException {
+    assertUrlStatusIsOk(String.format("http://%s:%s/%s", hostName, port, relativeUrl));
+  }
+
+  private void assertUrlStatusIsOk(String url) throws IOException {
+    HttpURLConnection connection = (HttpURLConnection)new URL(url).openConnection();
+
+    Assert.assertEquals(200, connection.getResponseCode());
   }
 
   private void assertOrderState(Long id, OrderState expectedState) throws InterruptedException {
