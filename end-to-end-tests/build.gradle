@@ -17,7 +17,7 @@ dependencies {
     compile project(":customer-service-api-web")
     compile project(":order-service-api-web")
     testCompile "junit:junit:4.12"
-
+    testCompile "io.eventuate.util:eventuate-util-test:$eventuateUtilVersion"
     testCompile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
 
     annotationProcessor "io.micronaut:micronaut-inject-java"

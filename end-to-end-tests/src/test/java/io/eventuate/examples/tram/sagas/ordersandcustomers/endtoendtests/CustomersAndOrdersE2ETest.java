@@ -7,6 +7,7 @@ import io.eventuate.examples.tram.sagas.ordersandcustomers.commondomain.OrderSta
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.webapi.CreateOrderRequest;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.webapi.CreateOrderResponse;
 import io.eventuate.examples.tram.sagas.ordersandcustomers.orders.webapi.GetOrderResponse;
+import io.eventuate.util.test.async.UrlTesting;
 import io.micronaut.context.annotation.Value;
 import io.micronaut.test.annotation.MicronautTest;
 import org.junit.Assert;
@@ -17,8 +18,6 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Inject;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 @MicronautTest
@@ -67,13 +66,7 @@ public class CustomersAndOrdersE2ETest{
   }
 
   private void testSwaggerUiUrl(int port) throws IOException {
-    assertUrlStatusIsOk(String.format("http://%s:%s/swagger-ui/index.html", hostName, port));
-  }
-
-  private void assertUrlStatusIsOk(String url) throws IOException {
-    HttpURLConnection connection = (HttpURLConnection)new URL(url).openConnection();
-
-    Assert.assertEquals(200, connection.getResponseCode());
+    UrlTesting.assertUrlStatusIsOk("localhost", port, "/swagger-ui/index.html");
   }
 
   private void assertOrderState(Long id, OrderState expectedState) throws InterruptedException {
